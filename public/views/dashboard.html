@@ -1,0 +1,40 @@
+<!-- BEGIN PAGE HEADER-->
+<div class="page-bar">
+</div>
+<h3 class="page-title"> 欢迎登陆 - 超级管理员 </h3>
+<div ng-controller="DashboardController">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <!-- BEGIN PORTLET-->
+            <div class="portlet light bordered tasks-widget">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <i class="icon-bar-chart font-green hide"></i>
+                        <span class="caption-subject font-green bold uppercase">库存预警</span>
+                        <span class="caption-helper font-red ">16</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="task-content">
+                        <div class="scroller" style="height: 282px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                            <!-- START TASK LIST -->
+                            <ul class="task-list">
+                                <li ng-repeat="value in data">
+                                    <div class="task-checkbox">
+                                        <span class="task-bell">
+                                            <i class="fa fa-bell-o"></i>
+                                        </span>
+                                    </div>
+                                    <div class="task-title">
+                                        <span class="task-title-sp"> 宝贝一号，剩余 {{value.num}} 件！</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- END START TASK LIST -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<!-- BEGIN PAGE HEADER-->
+<div class="page-bar">
+</div>
+<div class="row" ng-controller="sysUserController">
+	<div class="col-md-12">
+		<div class="portlet light">
+	        <div class="portlet-title">
+	            <div class="caption font-dark">
+	                <span class="caption-subject bold uppercase">用户管理</span>
+	            </div>
+	            <div class="tools"></div>
+	        </div>
+	        <div class="portlet-body">
+	        	<div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
+	        		<div class="row">
+	        			<div class="col-md-12">
+	        				<div class="dt-buttons">
+	        					<a href="javascript:;" class="btn btn-sm green" ng-click="addUserFunc()">添加用户</a>
+	        				</div>
+	        			</div>
+	        		</div>
+			        <div class="table-scrollable">
+			            <table class="table table-striped table-bordered table-advance table-hover">
+			                <thead>
+			                    <tr>
+			                        <th>登陆账号</th>
+			                        <th>用户名称</th>
+			                        <th>操作</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <tr ng-repeat="value in all_users">
+			                        <td>{{value.name}}</td>
+			                        <td>{{value.user}}</td>
+			                        <td>
+			                            <a href="javascript:;" ng-click="editUserFunc($index)">编辑</a> |
+			                            <a href="javascript:;">删除用户</a> |
+			                            <a href="javascript:;">重置密码</a>
+			                        </td>
+			                    </tr>
+			                </tbody>
+			            </table>
+			        </div>
+		        </div>
+	    	</div>
+    	</div>
+    </div>
+    <div data-ng-include="'views/sys/modal/add_modal.html'"></div>
+    <div data-ng-include="'views/sys/modal/edit_modal.html'"></div>
+</div>
