@@ -1,0 +1,37 @@
+.shipment-print{
+	font-size: 12px;
+	padding-right: 10px
+}
+
+.shipment-print-header .flow-id{
+	text-align: right;
+	padding-bottom: 5px;
+}
+
+.shipment-print-header .header-info .title{
+	text-align: center;
+	font-size: 28px;
+}
+
+.shipment-print-header .header-info .contact{
+	text-align: right;
+	position: relative;
+	bottom: 60px;
+}
+
+.shipment-print-header .header-info .footer{
+	margin-top: -35px;
+}
+
+.shipment-print-info th{text-align: center; border: 1px solid !important;}
+.shipment-print-info tr{text-align: center; border: 1px solid !important;}
+.shipment-print-info td{text-align: center; padding-top: 2px !important; padding-bottom: 2px !important;border: 1px solid !important;}
+
+
+.shipment-print-footer .footer-bottom{text-align: center; padding-top: 15px}
+.shipment-print-footer .footer-optrecord{padding-left: 10px;}
+.shipment-print-footer .footer-optrecord .first{padding-right: 110px;}
+.shipment-print-footer .footer-optrecord .second{padding-right: 110px;}
+
+
+

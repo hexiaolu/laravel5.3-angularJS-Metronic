@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('CACHE_DRIVER', 'memcached'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,11 +51,11 @@ return [
 
         'memcached' => [
             'driver' => 'memcached',
-            'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
-            'sasl' => [
-                env('MEMCACHED_USERNAME'),
-                env('MEMCACHED_PASSWORD'),
-            ],
+            // 'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
+            // 'sasl' => [
+            //     env('MEMCACHED_USERNAME'),
+            //     env('MEMCACHED_PASSWORD'),
+            // ],
             'options' => [
                 // Memcached::OPT_CONNECT_TIMEOUT  => 2000,
             ],

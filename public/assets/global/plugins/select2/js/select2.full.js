@@ -4898,7 +4898,8 @@ S2.define('select2/core',[
     $container.insertAfter(this.$element);
 
     var width = this._resolveWidth(this.$element, this.options.get('width'));
-
+    // 改变select2的宽度
+    width = '250px';
     if (width != null) {
       $container.css('width', width);
     }

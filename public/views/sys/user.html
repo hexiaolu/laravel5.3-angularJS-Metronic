@@ -15,7 +15,7 @@
 	        		<div class="row">
 	        			<div class="col-md-12">
 	        				<div class="dt-buttons">
-	        					<a href="javascript:;" class="btn btn-sm green" ng-click="addUserFunc()">添加用户</a>
+	        					<a href="javascript:;" class="btn btn-sm green" ng-click="vm.addUserModal()">添加用户</a>
 	        				</div>
 	        			</div>
 	        		</div>
@@ -29,22 +29,26 @@
 			                    </tr>
 			                </thead>
 			                <tbody>
-			                    <tr ng-repeat="value in all_users">
-			                        <td>{{value.name}}</td>
-			                        <td>{{value.user}}</td>
+			                    <tr ng-repeat="user in vm.listsData">
+			                        <td>{{user.name}}</td>
+			                        <td>{{user.user}}</td>
 			                        <td>
-			                            <a href="javascript:;" ng-click="editUserFunc($index)">编辑</a> |
-			                            <a href="javascript:;">删除用户</a> |
+			                            <a href="javascript:;" ng-click="vm.editUserModal($index)">编辑设置权限</a> |
+			                            <a href="javascript:;" ng-click="vm.deleteUserModal(user.id)">删除用户</a> |
 			                            <a href="javascript:;">重置密码</a>
 			                        </td>
 			                    </tr>
 			                </tbody>
 			            </table>
 			        </div>
+			        <!-- 分页 -->
+                    <jxcPage/>
 		        </div>
 	    	</div>
     	</div>
     </div>
     <div data-ng-include="'views/sys/modal/add_modal.html'"></div>
     <div data-ng-include="'views/sys/modal/edit_modal.html'"></div>
+    <div data-ng-include="'tpl/delete.html'"></div>
+    <div data-ng-include="'tpl/message.html'"></div>
 </div>

@@ -1,0 +1,39 @@
+<!-- BEGIN PAGE HEADER-->
+<div class="page-bar">
+</div>
+<div class="row" ng-controller="logsController">
+	<div class="col-md-12">
+		<div class="portlet light">
+	        <div class="portlet-title">
+	            <div class="caption font-dark">
+	                <span class="caption-subject bold uppercase">操作日志</span>
+	            </div>
+	            <div class="tools"></div>
+	        </div>
+	        <div class="portlet-body">
+		        <div class="table-scrollable">
+		            <table class="table table-striped table-bordered table-advance table-hover">
+		                <thead>
+		                    <tr>
+		                        <th>操作人</th>
+		                        <th>操作模块</th>
+		                        <th>操作详情</th>
+		                        <th>操作时间</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr ng-repeat="logs in vm.listsData">
+		                        <td>{{logs.user_name}}</td>
+		                        <td>{{logs.opt_model}}</td>
+		                        <td>{{logs.opt_detail}}</td>
+		                        <td>{{logs.created_at}}</td>
+		                    </tr>
+		                </tbody>
+		            </table>
+		        </div>
+		        <!-- 分页 -->
+                <jxcPage/>
+	    	</div>
+    	</div>
+    </div>
+</div>

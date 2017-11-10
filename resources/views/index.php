@@ -2,13 +2,13 @@
 <html lang="en" data-ng-app="JxcAdminApp">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
-
     <head>
         <title data-ng-bind="$state.current.data.pageTitle"></title>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
+        <meta content="{{ csrf_token() }}" name="csrf-tokzen" />
         <meta content="" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -16,6 +16,7 @@
         <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
         <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/global/plugins/jquery-notific8/jquery.notific8.min.css" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
         <link id="ng_load_plugins_before" />
@@ -31,6 +32,9 @@
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
     <!-- BEGIN BODY -->
+    <style media="print">
+         .noPrint { display: none; }
+    </style>
     <body ng-controller="AppController" class="page-header-fixed page-sidebar-closed-hide-logo page-on-load" ng-class="{'page-content-white': settings.layout.pageContentWhite,'page-container-bg-solid': settings.layout.pageBodySolid, 'page-sidebar-closed': settings.layout.pageSidebarClosed}">
         <!-- BEGIN PAGE SPINNER -->
         <div ng-spinner-bar class="page-spinner-bar">
@@ -63,6 +67,7 @@
         <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+        <script src="assets/global/plugins/jquery-notific8/jquery.notific8.min.js" type="text/javascript"></script>
         <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
         <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
         <script src="assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>

@@ -1,0 +1,86 @@
+<div class="modal fade add_product_modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content" ng-keyup="vm.addProductKeyUp($event)">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">添加产品</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal sys-add-user">
+                    <div class="form-body">
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">产品编号：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.optData.number" ng-disabled="vm.product_status">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入产品编号。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">产品名称：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.optData.name" ng-disabled="vm.product_status">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入产品名称。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">产品规格：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.optData.standard">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入产品规格。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">产品单位：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.optData.p_unit">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入产品单位。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">产地：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.optData.firm">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入产地。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">分类：</label>
+                            <div class="col-md-8">
+                                <select class="input-medium form-control search-query form-control-static add_select_sort" 
+                                    data-placeholder="请选择分类" ng-model="vm.optData.sort_id">
+                                    <option value=""></option>
+                                    <option ng-repeat="sortChild in vm.sortSelectLists" value="{{sortChild.id}}">{{sortChild.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input" ng-hide="vm.product_status">
+                            <label class="col-md-3 control-label">成本价：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.optData.price">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入产品成本价,有且只保留2位小数。</span>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">库存预警数：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control mask_number" ng-model="vm.optData.warn_stock">
+                                <div class="form-control-focus"></div>
+                                <span class="help-block">请输入库存预警数,只能输入整数,最大值999999。</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">取消</button>
+                <button type="button" submit-button-directives class="btn green" ng-click="vm.goodsSubmitOpt()" >提交</button>
+            </div>
+        </div>
+    </div>
+</div>

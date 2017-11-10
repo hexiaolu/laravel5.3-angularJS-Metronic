@@ -1,8 +1,7 @@
-<div class="modal fade edit_user_modal" tabindex="-1" aria-hidden="true" ng-if="edit_opt">
+<div class="modal fade edit_user_modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" style="width: 50%">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                 <h4 class="modal-title">编辑用户</h4>
             </div>
             <div class="modal-body">
@@ -11,7 +10,7 @@
                         <div class="form-group form-md-line-input">
                             <label class="col-md-3 control-label">用户名：</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" value="{{user.name}}">
+                                <input type="text" class="form-control" value="{{vm.optUser.name}}" ng-model="vm.optUser.name">
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入用户名，用于系统的操作人显示。</span>
                             </div>
@@ -19,25 +18,46 @@
                         <div class="form-group form-md-line-input">
                             <label class="col-md-3 control-label">登录账户：</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" value="{{user.user}}">
+                                <input type="text" class="form-control" value="{{vm.optUser.user}}" ng-model="vm.optUser.user">
                                 <div class="form-control-focus"></div>
                                 <span class="help-block">请输入登录账户，用于登录系统。</span>
                             </div>
                         </div>
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label">权限菜单：</label>
+                            <label class="col-md-3 control-label">菜单权限：</label>
                             <div class="col-md-8">
-                               <div class="form-group form-md-checkboxes" ng-repeat="menu in menus">
-                                    <label class="col-md-2 control-label">{{menu.name}}</label>
+                               <div class="form-group form-md-checkboxes" ng-repeat="menu in vm.menus">
+                                    <label class="col-md-2 control-label">{{menu.opt_depict}}</label>
                                     <div class="col-md-9">
                                         <div class="md-checkbox-inline">
                                             <div class="md-checkbox" ng-repeat="child in menu.children">
-                                                <input type="checkbox" id="checkbox{{$parent.$index}}_{{$index}}" ng-checked="child.isChecked" class="md-check" value="{{child.id}}">
+                                                <input type="checkbox" id="checkbox{{$parent.$index}}_{{$index}}" ng-model="child.ischecked" class="md-check" value="{{child.id}}">
                                                 <label for="checkbox{{$parent.$index}}_{{$index}}">
                                                     <span class="inc"></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span>
-                                                    {{child.name}}
+                                                    {{child.opt_depict}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">操作权限：</label>
+                            <div class="col-md-8">
+                               <div class="form-group form-md-checkboxes" ng-repeat="menu in vm.operation">
+                                    <label class="col-md-2 control-label">{{menu.opt_depict}}</label>
+                                    <div class="col-md-9">
+                                        <div class="md-checkbox-inline">
+                                            <div class="md-checkbox" ng-repeat="child in menu.children">
+                                                <input type="checkbox" id="operation_checkbox{{$parent.$index}}_{{$index}}" ng-model="child.ischecked" class="md-check" value="{{child.id}}">
+                                                <label for="operation_checkbox{{$parent.$index}}_{{$index}}">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                    {{child.opt_depict}}
                                                 </label>
                                             </div>
                                         </div>
@@ -49,8 +69,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn dark btn-outline" data-dismiss="modal">取消</button>
-                <button type="button" class="btn green" data-dismiss="modal">提交</button>
+                <button type="button" class="btn dark btn-outline" ng-disabled="vm.issubmit" data-dismiss="modal">取消</button>
+                <button type="button" submit-button-directives class="btn green" ng-disabled="vm.issubmit" ng-click="vm.submitOptFunc()">提交</button>
             </div>
         </div>
     </div>

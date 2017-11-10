@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['prefix' => 'guest', 'namespace' => 'Api'], function(){
-	Route::post('login', 'GuestController@login');
-	Route::post('createuser', 'GuestController@createUser');
+Route::group(['prefix' => 'wechat', 'namespace' => 'Wechat'], function(){
+	//  小程序专用。
+	Route::get('/test', 'WechatController@test');
 });

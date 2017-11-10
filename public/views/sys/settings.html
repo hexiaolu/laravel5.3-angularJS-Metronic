@@ -1,0 +1,68 @@
+<!-- BEGIN PAGE HEADER-->
+<div class="page-bar">
+</div>
+<div class="row" ng-controller="settingsController">
+	<div class="col-md-12">
+		<div class="portlet light">
+	        <div class="portlet-title">
+	            <div class="caption font-dark">
+	                <span class="caption-subject bold uppercase">系统设置</span>
+	            </div>
+	        </div>
+	        <div class="portlet-body">
+	        	<div class="portlet light bordered col-md-8">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span class="caption-subject font-green bold uppercase">出库操作设置</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="form-group">
+                        	<div class="md-checkbox">
+                                <input type="checkbox" id="RK_flow" class="md-check" ng-model="vm.optData.auto_into_flow">
+                                <label for="RK_flow">
+                                    <span class="inc"></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>启用自动流水号
+                                </label>
+                            </div>
+                        </div>
+                        <p>
+                        	启用自动流水号则由系统根据当天日期加上特定的规则生成唯一流水号，例如当天日期为 2017-08-08 则生成的流水号为：RK20170808XXXXX
+	                    </p>
+                    </div>
+                </div>
+                <div class="portlet light bordered col-md-8">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span class="caption-subject font-green bold uppercase">出库操作设置</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="form-group">
+                        	<div class="md-checkbox">
+                                <input type="checkbox" id="CK_flow" class="md-check" ng-model="vm.optData.auto_shipment_flow">
+                                <label for="CK_flow">
+                                    <span class="inc"></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>启用自动流水号
+                                </label>
+                            </div>
+                        </div>
+                        <p>
+                        	启用自动流水号则由系统根据当天日期加上特定的规则生成唯一流水号，例如当天日期为 2017-08-08 则生成的流水号为：CK20170808XXXXX
+	                    </p>
+                    </div>
+                </div>
+	    	</div>
+    	</div>
+    	<div class="form-actions col-md-8">
+    		<button class="btn btn-lg green-meadow" style="float:right" ng-click="vm.submitSettings()">
+    			提交
+                <i class="fa fa-check-square"></i>
+            </button>
+        </div>
+    </div>
+
+    <div data-ng-include="'tpl/message.html'"></div>
+</div>

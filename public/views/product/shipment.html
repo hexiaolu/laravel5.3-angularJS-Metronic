@@ -1,0 +1,177 @@
+<!-- BEGIN PAGE HEADER-->
+<div class="page-bar">
+</div>
+<div class="row" ng-controller="shipmentController" ng-init="">
+	<div class="col-md-12" ng-show="vm.showLists">
+        <div class="portlet light portlet-fit">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject sbold uppercase">出库管理</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="search-form">
+                    <input ng-keyup="vm.searchKeyUp($event)" type="text" name="group_no" class="input-medium form-control form-control-static" 
+                        placeholder="出库流水号" ng-model="vm.searchData.flow_id"/>
+                    <input type="text" name="start_time" class="input-medium form-control form-control-static into_date_modal" 
+                        readonly placeholder="开始时间" ng-model="vm.searchData.start_at"/>
+                    <input type="text" name="end_time" class="input-medium form-control form-control-static into_date_modal" 
+                        readonly placeholder="结束时间" ng-model="vm.searchData.end_at"/>
+                     <button id="sample_editable_1_new" class="btn green" style="margin-bottom:4px" ng-click="vm.handleSearch()">搜索
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <button id="sample_editable_1_new" class="btn grey-mint" style="margin-bottom:4px" ng-click="vm.resetSearch()">重置
+                        <i class="fa fa-recycle"></i>
+                    </button>
+                    <button id="sample_editable_1_new" class="btn btn-danger" style="margin-bottom:4px" ng-click="vm.shipmentProductModal()">出库
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <div id="sample_editable_1_wrapper" class="dataTables_wrapper no-footer">
+                	<div class="table-scrollable">
+	                	<table class="table table-striped table-hover table-bordered dataTable no-footer" id="sample_editable_1" role="grid" aria-describedby="sample_editable_1_info">
+		                    <thead>
+		                        <tr>
+                                    <th>出库流水号</th>
+                                    <th>客户名称</th>
+                                    <th>出库总金额（￥）</th>
+                                    <th>出库人员</th>
+                                    <th>创建时间</th>
+                                    <th>操作时间</th>
+			                        <th>状态</th>
+                                    <th>操作</th>
+			                    </tr>
+		                    </thead>
+		                    <tbody>
+			                    <tr ng-repeat="record in vm.listsData">
+                                    <td>{{record.flow_id}}</td>
+                                    <td>{{record.customer_name}}</td>
+		                            <td>{{record.total_price}}</td>
+                                    <td>{{record.opt_name}}</td>
+                                    <td>{{record.created_at}}</td>
+                                    <td>{{record.updated_at}}</td>
+                                    <td>{{record.status_desc}}</td>
+                                    <td>
+                                        <a href="javascript:;" ng-click="vm.detailModal(record, 'detail')">查看详情</a>
+                                        <span ng-if="record.status == 'wait_confirm'">
+                                            / <a href="javascript:;" ng-click="vm.confirmModal(record.id, 'confirm')">确认出库</a>
+                                            / <a href="javascript:;" ng-click="vm.confirmModal(record.id, 'cancel')">撤销出库</a>
+                                        </span>
+                                        <span ng-if="record.status == 'confirm'">
+                                            / <a href="javascript:;" ng-click="vm.detailModal(record, 'print')">打印</a>
+                                        </span>
+                                    </td>
+		                        </tr>
+	                       	</tbody>
+	                	</table>
+                	</div>
+                    <!-- 分页 -->
+                    <jxcPage/>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="confirm_shipment_opt" tabindex="-1" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">{{vm.confirm_title}}</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn dark btn-outline" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn green" ng-click="vm.submitConfirmOpt()">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div data-ng-include="'views/product/modal/shipment_modal.html'"></div>
+        <div data-ng-include="'views/product/modal/choose_product_modal.html'"></div>
+        <div data-ng-include="'views/product/modal/shipment_detail_modal.html'"></div>
+        <div data-ng-include="'tpl/delete.html'"></div>
+        <div data-ng-include="'tpl/message.html'"></div>
+    </div>
+
+    <div class="col-md-8" ng-show="vm.showPrint">
+        <div class="portlet light portlet-fit">
+            <div class="portlet-title noPrint">
+                <div class="caption">
+                    <span class="btn dark btn-outline btn-circle btn-sm" ng-click="vm.returnLists()"><i class='fa fa-reply'></i>  返回</span>
+                    <select class="input-medium form-control search-query form-control-static" ng-change="vm.selectPageFunc()" ng-model="vm.selectedPage">
+                        <option ng-repeat="page in vm.printPageSelect" value="{{page.key}}">{{page.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="search-form noPrint">
+                    <select class="input-medium form-control search-query form-control-static" ng-model="vm.printType">
+                        <option value="1">出库单</option>
+                        <option value="2">送货单</option>
+                        <option value="3">收据</option>
+                    </select>
+                     <button class="btn green" style="margin-bottom:4px" ng-click="vm.shipmentPrint()"><i class='fa fa-print'></i> 打印</button>
+                </div>
+                <div class="shipment-print">
+                    <div class="shipment-print-header">
+                        <div class="flow-id">{{vm.record_once.flow_id}}</div>
+                        <div class="header-info">
+                            <div class="title">
+                                <div>润 达 化 学 试 剂 商 店</div>
+                                <div>{{vm.printTitle}}</div>
+                            </div>
+                            <div class="contact">
+                                电 话：（0755）89712783<br>（0755）84125229
+                            </div>
+                            <div class="footer">
+                                <span>客户：{{vm.record_once.customer_name}}</span>
+                                <span style="float:right">{{vm.record_once.created_at}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shipment-print-info" style="padding-top:10px">
+                        <table class="table table-striped table-hover table-bordered dataTable">
+                            <thead>
+                                <tr>
+                                    <th>品名规格</th>
+                                    <th>产地</th>
+                                    <th>单位</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>金额</th>
+                                    <th>备注</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in vm.printProducts" style="height: 25px">
+                                    <td>{{item.new_name}}</td>
+                                    <td>{{item.firm}}</td>
+                                    <td>{{item.p_unit}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.sales_price}}</td>
+                                    <td>{{item.total_price}}</td>
+                                    <td>{{item.remark}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" style="text-align: left">金额大写：{{vm.total_price_rmb}}</td>
+                                    <td colspan="2" style="text-align: left">￥ {{vm.total_price | number:2}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="shipment-print-footer">
+                        <div class="footer-optrecord">
+                            <span class="first">填票人：{{vm.record_once.opt_name}}</span>
+                            <span class="second">收款人：{{vm.record_once.opt_name}}</span>
+                            <span>地址：坪山区坑梓镇龙湾路105号</span>
+                        </div>
+                        <div class="footer-bottom">
+                            <span style="padding-right: 25px;">第一联(白)：存根</span>
+                            <span style="padding-right: 25px;">第二联(红)：收款</span>
+                            <span style="padding-right: 25px;">第三联(蓝)：客户</span>
+                            第四联(黄)：仓库
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

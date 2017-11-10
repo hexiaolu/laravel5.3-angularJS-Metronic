@@ -13,49 +13,22 @@
                 <span class="title">首页</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="fa fa-database"></i>
-                <span class="title">产品管理</span>
+        <li class="nav-item" ng-repeat="menu in jxc_configs.sidebar_menus">
+            <a href="{{menu.href}}" class="nav-link nav-toggle">
+                <i class="{{menu.icon}}"></i>
+                <span class="title">{{menu.opt_depict}}</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
-                <li>
-                    <a href="#/product_goods.html">
-                        <i class="fa fa-flask"></i> 产品管理</span>
+                <li ng-repeat="child in menu.children">
+                    <a href="{{child.href}}">
+                        <i class="{{child.icon}}"></i> {{child.opt_depict}}</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-tags"></i> 厂商管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-mail-forward"></i> 入库管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-mail-reply"></i> 出库管理</span>
-                    </a>
-                </li>
+              
             </ul>
         </li>
-        <li class="nav-item">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-settings"></i>
-                <span class="title">系统管理</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a href="#/sys_user.html">
-                        <i class="icon-users"></i> 用户管理</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
+      
     </ul>
     <!-- END SIDEBAR MENU -->
 </div>

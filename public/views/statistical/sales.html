@@ -1,0 +1,162 @@
+<!-- BEGIN PAGE HEADER-->
+<style type="text/css">
+    .dashboard-stat .visual {
+        width: 80px;
+        height: 80px;
+        display: block;
+        float: left;
+        padding-top: 10px;
+        padding-left: 55px;
+        margin-bottom: 40px;
+        font-size: 35px;
+        line-height: 35px;
+    }
+    .sales-statistical-up {
+        padding-bottom: 20px
+    }
+    .sales-statistical-down {
+        padding-bottom: 20px
+    }
+</style>
+<div class="page-bar">
+</div>
+<div class="row" ng-controller="StaSalesController" ng-init="vm.before_init()">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject sbold uppercase">营业额统计列表</span>
+                </div>
+            </div>
+            <div class="sales-statistical-up col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue">
+                        <div class="visual">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <span data-counter="counterup">￥ {{vm.otherRes.statistical.today_res.total_price}}</span>
+                            </div>
+                            <div class="desc"> 今日总销售({{vm.otherRes.statistical.today}}) </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green">
+                        <div class="visual">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <span data-counter="counterup">￥ {{vm.otherRes.statistical.today_res.total_cost}}</span>
+                            </div>
+                            <div class="desc"> 今日总成本({{vm.otherRes.statistical.today}}) </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat red">
+                        <div class="visual">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <span data-counter="counterup">
+                                    ￥ {{vm.otherRes.statistical.today_res.total_price - vm.otherRes.statistical.today_res.total_cost | number : 2}}
+                                </span>
+                            </div>
+                            <div class="desc"> 今日总利润({{vm.otherRes.statistical.today}}) </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sales-statistical-down col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue">
+                        <div class="visual">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <span data-counter="counterup">￥ {{vm.otherRes.statistical.total_res.total_price}}</span>
+                            </div>
+                            <div class="desc"> 总销售({{vm.otherRes.statistical.total_date}}) </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green">
+                        <div class="visual">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <span data-counter="counterup">￥ {{vm.otherRes.statistical.total_res.total_cost}}</span>
+                            </div>
+                            <div class="desc"> 总成本({{vm.otherRes.statistical.total_date}}) </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat red">
+                        <div class="visual">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <span data-counter="counterup">
+                                    ￥ {{vm.otherRes.statistical.total_res.total_price - vm.otherRes.statistical.total_res.total_cost | number : 2}}
+                                </span>
+                            </div>
+                            <div class="desc"> 总利润({{vm.otherRes.statistical.total_date}}) </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="search-form">
+                    <input type="text" name="start_time" class="input-small form-control form-control-static into_date_modal" 
+                        readonly placeholder="开始时间" ng-model="vm.searchData.start_at"/>
+                    <input type="text" name="end_time" class="input-small form-control form-control-static into_date_modal" 
+                        readonly placeholder="结束时间" ng-model="vm.searchData.end_at"/>
+                    <button id="sample_editable_1_new" class="btn green" style="margin-bottom:4px" ng-click="vm.handleSearch()">搜索
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <button id="sample_editable_1_new" class="btn grey-mint" style="margin-bottom:4px" ng-click="vm.resetSearch()">重置
+                        <i class="fa fa-recycle"></i>
+                    </button>
+                </div>
+                <div id="sample_editable_1_wrapper" class="dataTables_wrapper no-footer">
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-hover table-bordered dataTable no-footer" id="sample_editable_1" role="grid" aria-describedby="sample_editable_1_info">
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>总销售（￥）</th>
+                                    <th>总成本（￥）</th>
+                                    <th>总利润（￥）</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in vm.listsData">
+                                    <td>{{item.s_date}}</td>
+                                    <td>{{item.total_price}}</td>
+                                    <td>{{item.total_cost}}</td>
+                                    <td>{{item.total_price - item.total_cost | number: 2}}</td>
+                                    <td>
+                                        <a class="edit" href="javascript:;" ng-click="vm.showShipment(item.s_date)">查看详情</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 分页 -->
+                    <jxcPage/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

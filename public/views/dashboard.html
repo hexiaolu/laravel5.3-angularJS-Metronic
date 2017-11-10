@@ -11,7 +11,12 @@
                     <div class="caption caption-md">
                         <i class="icon-bar-chart font-green hide"></i>
                         <span class="caption-subject font-green bold uppercase">库存预警</span>
-                        <span class="caption-helper font-red ">16</span>
+                        <span class="caption-helper font-red ">{{vm.product_count}}</span>
+                    </div>
+                    <div class="actions">
+                        <div class="btn-group btn-group-devided" data-toggle="buttons">
+                            <a class="btn green btn-circle btn-md" href="#/product_warn.html">查看更多</a>
+                        </div>
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -19,18 +24,59 @@
                         <div class="scroller" style="height: 282px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                             <!-- START TASK LIST -->
                             <ul class="task-list">
-                                <li ng-repeat="value in data">
+                                <li ng-repeat="item in vm.product_warns">
                                     <div class="task-checkbox">
                                         <span class="task-bell">
                                             <i class="fa fa-bell-o"></i>
                                         </span>
                                     </div>
                                     <div class="task-title">
-                                        <span class="task-title-sp"> 宝贝一号，剩余 {{value.num}} 件！</span>
+                                        <span class="task-title-sp"> {{item.name}}，剩余 {{item.stock}} 件！</span>
                                     </div>
                                 </li>
                             </ul>
                             <!-- END START TASK LIST -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <!-- BEGIN PORTLET-->
+            <div class="portlet light bordered tasks-widget">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <i class="icon-bar-chart font-green hide"></i>
+                        <span class="caption-subject font-green bold uppercase">出库审核</span>
+                        <span class="caption-helper font-red ">{{vm.shipment_count}}</span>
+                    </div>
+                    <div class="actions">
+                        <div class="btn-group btn-group-devided" data-toggle="buttons">
+                            <a class="btn green btn-circle btn-md" href="#/product_shipment.html">操作</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="task-content">
+                        <div class="scroller" style="height: 282px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                            <table class="table table-striped table-bordered table-advance table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>出库流水号</th>
+                                        <th>出库总金额</th>
+                                        <th>出库操作人</th>
+                                        <th>创建时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in vm.shipment_records">
+                                        <td>{{item.flow_id}}</td>
+                                        <td>{{item.total_price}}</td>
+                                        <td>{{item.opt_name}}</td>
+                                        <td>{{item.created_at}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
