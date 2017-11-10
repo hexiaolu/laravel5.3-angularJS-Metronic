@@ -2,7 +2,6 @@
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 120.25.94.93
 -- Generation Time: 2017-11-10 14:55:25
 -- 服务器版本： 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 5.6.25
